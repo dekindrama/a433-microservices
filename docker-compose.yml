@@ -1,0 +1,19 @@
+# using docker version 2^
+version: "2.19.1"
+
+# declare services
+services:
+  # setup item-db
+  item-db:
+    image: mongo:3
+    volumes:
+      - app-db:/data/db # using volumes app-db
+  # setup item-app
+  item-app:
+    image: dekindrama/item-app:v1
+    ports:
+      - 8080:8080 # expose port 8080
+
+# declare volumes
+volumes:
+  app-db:
