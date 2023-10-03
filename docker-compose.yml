@@ -6,13 +6,17 @@ services:
   # setup item-db
   item-db:
     image: mongo:3
+    restart: always
     volumes:
       - app-db:/data/db # using volumes app-db
   # setup item-app
   item-app:
     image: dekindrama/item-app:v1
+    restart: always
     ports:
       - 8080:8080 # expose port 8080
+    depends_on:
+      - item-db
 
 # declare volumes
 volumes:
